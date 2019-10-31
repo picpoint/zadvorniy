@@ -8,13 +8,13 @@ const urlMongoDB = 'mongodb+srv://rmtar:rmtar@cluster0-nw44p.mongodb.net/zadvorn
 const Zadvorniy = require('./schems/zadvorniySchema.js');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
-  //defaultLayout: 'main',
   extname: 'hbs'
 });
 
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', 'views');
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,15 +45,13 @@ app.get('/records', (req, res) => {
       console.log(docs);
     }    
   });
-
-  res.sendFile(__dirname + '/public/records.html');  
-  console.log('page records');
   
+  res.render('records', {docs: 'docs'});  
 });
 
 
-app.get('/', (req, res) => {  
-	res.sendFile(__dirname + '/public/index.html');	
+app.get('/', (req, res) => {    
+  res.render('index');
 });
 
 app.post('/', (req, res) => {
