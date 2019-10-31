@@ -6,11 +6,19 @@ const bodyParser = require('body-parser');
 const jsonParser = express.json();
 const urlMongoDB = 'mongodb+srv://rmtar:rmtar@cluster0-nw44p.mongodb.net/zadvorniydb?retryWrites=true&w=majority';
 const Zadvorniy = require('./schems/zadvorniySchema.js');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({
+  //defaultLayout: 'main',
+  extname: 'hbs'
+});
 
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', 'views');
 app.use(express.static('public'));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-//app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 
 
@@ -30,25 +38,21 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 
 app.get('/records', (req, res) => {
       
-  Zadvorniy.find({}, (err, docs) => {
-    mongoose.disconnect();
+  Zadvorniy.find({}, (err, docs) => {    
     if(err) {
       throw new Error('Err to find records');
-    } else {
-      for(let i = 0; i < docs.length; i++) {
-        console.log(docs[i]);
-      }
+    } else {                  
+      console.log(docs);
     }    
   });
 
-  res.sendFile(__dirname + '/public/records.html');
+  res.sendFile(__dirname + '/public/records.html');  
   console.log('page records');
   
 });
 
 
-app.get('/', (req, res) => {
-  mongoose.disconnect();
+app.get('/', (req, res) => {  
 	res.sendFile(__dirname + '/public/index.html');	
 });
 
@@ -61,8 +65,7 @@ app.post('/', (req, res) => {
 		source: req.body.source
 	});
 
-	newzadvorniyobj.save((err) => {
-    mongoose.disconnect();
+	newzadvorniyobj.save((err) => {    
 		if(err) {
 			throw new Error('***ERR TO SAVE OBJ***');
 		} else {
