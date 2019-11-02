@@ -36,9 +36,9 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 });
 
 
-app.get('/records', (req, res) => {
+app.get('/records', async (req, res) => {
       
-  Zadvorniy.find({}, (err, docs) => {    
+  const mass = await Zadvorniy.find({}, (err, docs) => {    
     if(err) {
       throw new Error('Err to find records');
     } else {                  
@@ -46,7 +46,10 @@ app.get('/records', (req, res) => {
     }    
   });
   
-  res.render('records', {docs: 'docs'});  
+  res.render('records', {
+    title: 'Records page',
+    mass
+  });  
 });
 
 

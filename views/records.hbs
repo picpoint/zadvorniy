@@ -10,9 +10,16 @@
 <body>
 	<h2>Records page</h2>
 	<a href="/">Home page</a>
-
-	{{docs}}
-	
+  <br><br>
+	{{#if mass.length}}
+		{{#each mass}}
+      {{title}}
+      {{yearsOfIssue}}
+			{{duration}}      
+      {{source}}
+		{{/each}}
+	{{/if}}
+	<br><br>
 <script src="js/findRecords.js"></script>
 </body>
 </html>
