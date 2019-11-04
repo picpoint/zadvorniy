@@ -57,6 +57,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+
 app.post('/', (req, res) => {
 
   const newzadvorniyobj = new Zadvorniy({
@@ -74,8 +75,7 @@ app.post('/', (req, res) => {
 		}
   });
 
-  res.redirect('/');
-  console.log('root');
+  res.redirect('/');  
 
 });
 

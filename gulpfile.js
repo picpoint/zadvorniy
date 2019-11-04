@@ -47,3 +47,62 @@ const smartGrigConf = {
 };
 
 
+gulp.task('less', () => {
+	return gulp.src('./src/less/style.less')
+	.pipe(less())
+	.pipe(gulp.dest('./public/css'))
+	.pipe(browserSync.reload({
+		stream: true
+	}));
+});
+
+
+gulp.task('htmlminrecords', () => {
+  return gulp.src('./src/pages/records.hbs')
+  .pipe(htmlmin({collapseWhitespace: true}))
+  .pipe(gulp.dest('./views'))
+  .pipe(browserSync.reload({
+		stream: true
+	}));
+});
+
+
+gulp.task('htmlminindex', () => {
+  return gulp.src('./src/pages/index.hbs')
+  .pipe(htmlmin({collapseWhitespace: true}))
+  .pipe(gulp.dest('./views'))
+  .pipe(browserSync.reload({
+		stream: true
+	}));
+});
+
+
+gulp.task('js', () => {
+  return gulp.src('./src/js')
+  .pipe(gulp.dest('./public/js'))
+  .pipe(browserSync.reload({
+		stream: true
+	}));
+});
+
+
+gulp.task('grid', () => {
+  smartgrid('./src/less', smartGrigConf)
+});
+
+
+gulp.task('watch', ['less', 'htmlminrecords', 'htmlminindex', 'js', 'browserSync'], () => {
+  gulp.watch('./src/less/style.less', ['less']);
+  gulp.watch('./src/pages/records.hbs', ['htmlminrecords']);
+  gulp.watch('./src/pages/index.hbs', ['htmlminindex']);
+  gulp.watch('./src/js', ['js']);
+});
+
+
+gulp.task('browserSync', () => {
+  browserSync.init({
+    server: {
+      baseDir: './public'
+    }
+  });
+});
