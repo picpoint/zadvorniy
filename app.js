@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = process.env.port || 4000;
 const mongoose = require('mongoose');
@@ -6,16 +7,16 @@ const bodyParser = require('body-parser');
 const jsonParser = express.json();
 const urlMongoDB = 'mongodb+srv://rmtar:rmtar@cluster0-nw44p.mongodb.net/zadvorniydb?retryWrites=true&w=majority';
 const Zadvorniy = require('./schems/zadvorniySchema.js');
+
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
   extname: 'hbs'
 });
 
-
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended: true}));
@@ -36,8 +37,7 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 });
 
 
-app.get('/records', async (req, res) => {
-      
+app.get('/records', async (req, res) => {    
   const mass = await Zadvorniy.find({}, (err, docs) => {    
     if(err) {
       throw new Error('Err to find records');
@@ -45,7 +45,7 @@ app.get('/records', async (req, res) => {
       console.log(docs);
     }    
   });
-  
+    
   res.render('records', {
     title: 'Records page',
     mass
@@ -53,13 +53,13 @@ app.get('/records', async (req, res) => {
 });
 
 
-app.get('/', (req, res) => {    
-  res.render('index');
+app.get('/', (req, res) => {      
+  res.render('index');  
 });
 
 
 app.post('/', (req, res) => {
-
+  
   const newzadvorniyobj = new Zadvorniy({
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,

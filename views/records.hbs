@@ -1,1 +1,25 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../public/css/style.css"><title>All records</title></head><body><h2>Records page</h2><a href="/">Home page</a><br><br>{{#if mass.length}} {{#each mass}} {{title}} {{yearsOfIssue}} {{duration}} {{source}} {{/each}} {{/if}}<br><br><h3>Page records</h3><script src="../public/js/test.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>All records</title>
+</head>
+<body>
+	<h2>Records page</h2>
+	<a href="/">Home page</a>
+  <br><br>
+	{{#if mass.length}}
+		{{#each mass}}
+      {{title}}
+      {{yearsOfIssue}}
+			{{duration}}      
+      {{source}}
+		{{/each}}
+	{{/if}}
+	<br><br>
+	<h3>Page records</h3>
+  
+
+</body>
+</html>

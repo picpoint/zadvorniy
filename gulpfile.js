@@ -59,7 +59,7 @@ gulp.task('less', () => {
 
 gulp.task('htmlminrecords', () => {
   return gulp.src('./src/pages/records.hbs')
-  .pipe(htmlmin({collapseWhitespace: true}))
+  //.pipe(htmlmin({collapseWhitespace: true}))
   .pipe(gulp.dest('./views'))
   .pipe(browserSync.reload({
 		stream: true
@@ -69,7 +69,7 @@ gulp.task('htmlminrecords', () => {
 
 gulp.task('htmlminindex', () => {
   return gulp.src('./src/pages/index.hbs')
-  .pipe(htmlmin({collapseWhitespace: true}))
+  //.pipe(htmlmin({collapseWhitespace: true}))
   .pipe(gulp.dest('./views'))
   .pipe(browserSync.reload({
 		stream: true
@@ -79,7 +79,7 @@ gulp.task('htmlminindex', () => {
 
 gulp.task('js', () => {
   return gulp.src('./src/js')
-  .pipe(gulp.dest('./public/js'))
+  .pipe(gulp.dest('./public'))
   .pipe(browserSync.reload({
 		stream: true
 	}));
@@ -102,7 +102,7 @@ gulp.task('watch', ['less', 'htmlminrecords', 'htmlminindex', 'js', 'browserSync
 gulp.task('browserSync', () => {
   browserSync.init({
     server: {
-      baseDir: './public'
+      baseDir: './views'
     }
   });
 });
