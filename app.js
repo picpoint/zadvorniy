@@ -16,7 +16,6 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
-//app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -38,8 +37,7 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 });
 
 
-app.get('/records', async (req, res) => {    
-  res.status(200);
+app.get('/records', async (req, res) => {      
   const mass = await Zadvorniy.find({}, (err, docs) => {    
     if(err) {
       throw new Error('Err to find records');
@@ -55,14 +53,12 @@ app.get('/records', async (req, res) => {
 });
 
 
-app.get('/', (req, res) => {      
-  res.status(200);
+app.get('/', (req, res) => {        
   res.render('index');  
 });
 
 
-app.post('/', (req, res) => {
-  res.status(200);
+app.post('/', (req, res) => {  
   const newzadvorniyobj = new Zadvorniy({
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,
