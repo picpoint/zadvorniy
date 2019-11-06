@@ -1,10 +1,37 @@
 body {
-  background-color: lightcyan;
+  background-image: url('/pict/bkg.png');
+  background-size: cover;
 }
-.outputdatas {
+.rec {
   border: 1px solid black;
   display: flex;
-  justify-content: flex-start;
-  width: 100px;
-  height: 150px;
+  height: 95vh;
+}
+.rec__wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.rec__multblock {
+  display: flex;
+}
+.rec__eachmult {
+  border: 1px solid red;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 250px;
+  height: 200px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.rec__eachmult span {
+  text-align: center;
+  padding: 5px;
+}
+.rec__eachmult span:nth-child(1) {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.1rem;
 }

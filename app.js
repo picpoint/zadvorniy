@@ -42,7 +42,7 @@ app.get('/records', async (req, res) => {
     if(err) {
       throw new Error('Err to find records');
     } else {                  
-      console.log(docs);
+      //console.log(docs);
     }    
   });
     
