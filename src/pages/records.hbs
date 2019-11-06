@@ -6,22 +6,32 @@
 	<title>All records</title>
 </head>
 <body>
-	<h2>Records page</h2>
-	<a href="/">Home page</a>
-  <br><br>
-	{{#if mass.length}}
-		{{#each mass}}
-      <div class="outputdatas">
-        {{title}}
-        {{yearsOfIssue}}
-        {{duration}}      
-        {{source}}
+	
+	<section class="rec">
+    <div class="rec__wrap">
+    
+      <h2>Records page</h2>
+      <a href="/">Home page</a>
+      
+      <div class="rec__multblock">
+        {{#if mass.length}}
+          {{#each mass}}
+            <div class="rec__eachmult">
+              <span>{{title}}</span>
+              <span><sub>Премьера</sub></span>
+              <span>{{yearsOfIssue}}</span>
+              <span><sub>Продолжительность</sub></span>
+              <span>{{duration}}</span>
+              <div class="rec__link">
+                <span>{{source}}</span>
+              </div>  
+            </div>
+          {{/each}}
+        {{/if}}
       </div>
-		{{/each}}
-	{{/if}}
-	<br><br>
-	<h3>Page records</h3>
-  
+
+    </div>
+	</section>  
 
 </body>
 </html>

@@ -25,23 +25,39 @@ body {
     //height: 100%;
   }
   &__eachmult{
-    border: @border;
     border-radius: 7px;
     display: flex;    
     flex-direction: column;
     justify-content: space-around;
     width: 250px;
-    height: 200px;
+    //height: 200px;
     margin: 10px;
     background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);    
+    transition: @transition;    
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+			transform: scale(1.05, 1.05);
+      outline: 0;
+      transition: @transition;
+    }
     span {
       text-align: center;
-      padding: 5px;      
+      padding: 10px;      
     }
     span:nth-child(1) {
       font-weight: bold;
       text-decoration: underline;
       font-size: 1.1rem;
+      color: #094d74;
+    }
+    span:nth-child(2) {
+      color: gray;
+      padding: 5px 0 0 0;      
+    }
+    span:nth-child(4) {
+      color: gray;
+      padding: 5px 0 0 0;      
     }
   }
 }

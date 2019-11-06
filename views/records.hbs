@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-  <section class="rec">
+	<section class="rec">
     <div class="rec__wrap">
     
       <h2>Records page</h2>
@@ -18,16 +18,20 @@
           {{#each mass}}
             <div class="rec__eachmult">
               <span>{{title}}</span>
+              <span><sub>Премьера</sub></span>
               <span>{{yearsOfIssue}}</span>
+              <span><sub>Продолжительность</sub></span>
               <span>{{duration}}</span>
-              <span>{{source}}</span>
+              <div class="rec__link">
+                <span>{{source}}</span>
+              </div>  
             </div>
           {{/each}}
         {{/if}}
       </div>
 
     </div>
-	</section>
+	</section>  
 
 </body>
 </html>
