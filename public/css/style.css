@@ -56,16 +56,24 @@ body {
   color: gray;
 }
 .rec__link {
+  border: 1px solid red;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .rec__link img {
-  width: 25px;
-  height: 25px;
-  margin: 15px 0;
+  border: 1px solid red;
+  width: 30px;
+  height: 30px;
+  margin: 15px;
 }
 .rec__link a {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 100%;
   text-decoration: none;
   color: red;
   font-weight: bold;

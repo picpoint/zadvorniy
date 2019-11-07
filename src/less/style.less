@@ -63,18 +63,26 @@ body {
     }
   }
   &__link {    
-    display: flex;
-    justify-content: space-around;
+    border: @border;
+    display: flex;    
+    justify-content: center;    
     align-items: center;    
+    width: 100%;
     img {
-      width: 25px;
-      height: 25px;
-      margin: 15px 0;
+      border: @border;
+      width: 30px;
+      height: 30px;
+      margin: 15px;
     }
     a {
+      border: @border;            
+      display: flex;
+      align-items: center;
+      text-align: center;      
+      height: 100%;      
       text-decoration: none;
       color: red;
-      font-weight: bold;
+      font-weight: bold;      
     }
   }
 
