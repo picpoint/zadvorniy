@@ -1,6 +1,8 @@
 body {
   background-image: url('/pict/bkg.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .rec {
   border: 1px solid black;
@@ -38,7 +40,6 @@ body {
 }
 .rec__eachmult span:nth-child(1) {
   font-weight: bold;
-  text-decoration: underline;
   font-size: 1.1rem;
   color: #094d74;
 }
@@ -49,4 +50,23 @@ body {
 .rec__eachmult span:nth-child(4) {
   color: gray;
   padding: 5px 0 0 0;
+}
+.rec__eachmult span:nth-child(5) {
+  font-weight: bold;
+  color: gray;
+}
+.rec__link {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.rec__link img {
+  width: 25px;
+  height: 25px;
+  margin: 15px 0;
+}
+.rec__link a {
+  text-decoration: none;
+  color: red;
+  font-weight: bold;
 }

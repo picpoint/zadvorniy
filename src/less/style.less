@@ -7,30 +7,28 @@ body {
   //background-color: lightcyan;	
   background-image: url('/pict/bkg.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .rec {
   border: 1px solid black;
   display: flex;  
   height: 95vh;
-  &__wrap {
-    //border: @border;    
+  &__wrap {    
     display: flex;
     flex-direction: column;
     width: 100%;
   }
-  &__multblock {
-    //border: @border;
-    display: flex;
-    //height: 100%;
+  &__multblock {    
+    display: flex;    
   }
   &__eachmult{
     border-radius: 7px;
     display: flex;    
     flex-direction: column;
     justify-content: space-around;
-    width: 250px;
-    //height: 200px;
+    width: 250px;    
     margin: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);    
@@ -47,7 +45,7 @@ body {
     }
     span:nth-child(1) {
       font-weight: bold;
-      text-decoration: underline;
+      //text-decoration: underline;
       font-size: 1.1rem;
       color: #094d74;
     }
@@ -59,5 +57,26 @@ body {
       color: gray;
       padding: 5px 0 0 0;      
     }
+    span:nth-child(5) {
+      font-weight: bold;
+      color: gray;
+    }
   }
+  &__link {    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+    img {
+      width: 25px;
+      height: 25px;
+      margin: 15px 0;
+    }
+    a {
+      text-decoration: none;
+      color: red;
+      font-weight: bold;
+    }
+  }
+
+
 }

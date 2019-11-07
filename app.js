@@ -63,7 +63,8 @@ app.post('/', (req, res) => {
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,
 		duration: req.body.duration,
-		source: req.body.source
+    source: req.body.source,
+    uploadimg: req.body.uploadimg    
 	});
 
 	newzadvorniyobj.save((err) => {    

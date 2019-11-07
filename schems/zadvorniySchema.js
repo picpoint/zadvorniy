@@ -6,6 +6,7 @@ const zadvorniySchema = mongoose.Schema({
 	yearsOfIssue: Date,
 	duration: String,
 	source: String,
+	uploadimg: Buffer,	
 	created: {
 		type: Date,
 		default: Date.now

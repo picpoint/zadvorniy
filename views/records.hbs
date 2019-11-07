@@ -17,13 +17,15 @@
         {{#if mass.length}}
           {{#each mass}}
             <div class="rec__eachmult">
+              {{uploadimg}}
               <span>{{title}}</span>
               <span><sub>Премьера</sub></span>
               <span>{{yearsOfIssue}}</span>
               <span><sub>Продолжительность</sub></span>
               <span>{{duration}}</span>
               <div class="rec__link">
-                <span>{{source}}</span>
+                <img src="pict/play.png" alt="play">
+                <a href="{{source}}" target="_blank">Посмотреть мультфильм</a>
               </div>  
             </div>
           {{/each}}
