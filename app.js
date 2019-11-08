@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const GridFS = require('gridfs-stream');
 const port = process.env.port || 4000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
