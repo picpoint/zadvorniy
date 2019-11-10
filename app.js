@@ -6,6 +6,9 @@ const port = process.env.port || 4000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jsonParser = express.json();
+const multiparty = require('connect-multiparty')();
+const multer = require('multer');
+
 const urlMongoDB = 'mongodb+srv://rmtar:rmtar@cluster0-nw44p.mongodb.net/zadvorniydb?retryWrites=true&w=majority';
 const Zadvorniy = require('./schems/zadvorniySchema.js');
 
@@ -14,6 +17,11 @@ const hbs = exphbs.create({
   extname: 'hbs'
 });
 
+const upload = multer({dest: 'uploads'});
+
+let mongoDriver = mongoose.mongo;
+let gfs = new GridFS(urlMongoDB, mongoDriver);
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
@@ -21,6 +29,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended: true}));
+
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4000');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 
 
@@ -59,7 +76,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/', (req, res) => {  
+app.post('/', upload.single('uploadimg'), (req, res, next) => {  
   const newzadvorniyobj = new Zadvorniy({
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,
@@ -73,8 +90,26 @@ app.post('/', (req, res) => {
 			throw new Error('***ERR TO SAVE OBJ***');
 		} else {
 			console.log(`save successfully`);
-		}
+    }        
+
   });
+
+  let filedata = req.file;
+  console.log(filedata);
+  filedata.filename = filedata.originalname;
+
+  if(!filedata) {
+    console.log('***ERR TO UPLOAD FILE***');
+  } else {
+    console.log('upload img is successfully');
+  }
+
+
+  // console.log(req.body);
+  // console.log('**************');
+  // console.log(req.files);
+
+
 
   res.redirect('/');  
 

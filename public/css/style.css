@@ -7,6 +7,7 @@ body {
 .rec {
   border: 1px solid black;
   display: flex;
+  flex-wrap: wrap;
   height: 95vh;
 }
 .rec__wrap {
@@ -56,20 +57,17 @@ body {
   color: gray;
 }
 .rec__link {
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 .rec__link img {
-  border: 1px solid red;
   width: 30px;
   height: 30px;
   margin: 15px;
 }
 .rec__link a {
-  border: 1px solid red;
   display: flex;
   align-items: center;
   text-align: center;
