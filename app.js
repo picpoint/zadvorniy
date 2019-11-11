@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const GridFS = require('gridfs-stream');
 const port = process.env.port || 4000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jsonParser = express.json();
-const multiparty = require('connect-multiparty')();
-const multer = require('multer');
 
 const urlMongoDB = 'mongodb+srv://rmtar:rmtar@cluster0-nw44p.mongodb.net/zadvorniydb?retryWrites=true&w=majority';
 const Zadvorniy = require('./schems/zadvorniySchema.js');
@@ -17,10 +16,6 @@ const hbs = exphbs.create({
   extname: 'hbs'
 });
 
-const upload = multer({dest: 'uploads'});
-
-let mongoDriver = mongoose.mongo;
-let gfs = new GridFS(urlMongoDB, mongoDriver);
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -76,7 +71,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/', upload.single('uploadimg'), (req, res, next) => {  
+app.post('/', (req, res) => {  
   const newzadvorniyobj = new Zadvorniy({
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,
@@ -91,26 +86,14 @@ app.post('/', upload.single('uploadimg'), (req, res, next) => {
 		} else {
 			console.log(`save successfully`);
     }        
-
   });
 
-  let filedata = req.file;
-  console.log(filedata);
-  filedata.filename = filedata.originalname;
-
-  if(!filedata) {
-    console.log('***ERR TO UPLOAD FILE***');
-  } else {
-    console.log('upload img is successfully');
-  }
-
-
-  // console.log(req.body);
-  // console.log('**************');
-  // console.log(req.files);
+  let read = fs.createReadStream(req.body.uploadimg);
+  console.log(read);
 
 
 
+  
   res.redirect('/');  
 
 });
