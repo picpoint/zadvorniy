@@ -10,6 +10,6 @@ const zadvorniySchema = mongoose.Schema({
 	}	
 });
 
-const Zadvorniy = mongoose.model('Zadvorniy', zadvorniySchema);
 
+const Zadvorniy = mongoose.model('Zadvorniy', zadvorniySchema);
 module.exports = Zadvorniy;

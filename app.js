@@ -49,6 +49,27 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 });
 
 
+const storage = new GridFsStorage({
+  url: urlMongoDB,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if(err) {
+          reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketname: 'gridfscollections'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+
+
+
 app.get('/records', async (req, res) => {      
   const mass = await Zadvorniy.find({}, (err, docs) => {    
     if(err) {
@@ -57,10 +78,9 @@ app.get('/records', async (req, res) => {
       //console.log(docs);
     }    
   });
-    
-  res.render('records', {
-    title: 'Records page',
-    mass
+  
+  res.render('records', {    
+    mass: mass
   });  
 });
 
