@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
-const zadvorniySchema = mongoose.Schema({
-	//_id: mongoose.Schema.Types.ObjectId,
-	cover: Buffer,
+const zadvorniySchema = mongoose.Schema({	
 	title: String,
 	yearsOfIssue: Date,
 	duration: String,
-	source: String,
-	uploadimg: Buffer,	
+	source: String,	
 	created: {
 		type: Date,
 		default: Date.now
 	}	
 });
 
-const Zadvorniy = mongoose.model('Zadvorniy', zadvorniySchema);
 
+const Zadvorniy = mongoose.model('Zadvorniy', zadvorniySchema);
 module.exports = Zadvorniy;
