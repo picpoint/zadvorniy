@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended: true}));
 
 let gfs;
 
-const conn = mongoose.createConnection(urlMongoDB);
+const conn = mongoose.createConnection(urlMongoDB, {useNewUrlParser: true});
 
 mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 	if(err) {
@@ -52,7 +52,7 @@ mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 
 conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('gridfscollections');
+  gfs.collection('fs');
 });
 
 
@@ -67,7 +67,7 @@ const storage = new GridFsStorage({
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketname: 'gridfscollections'
+          bucketname: 'fs'
         };
         resolve(fileInfo);
       });
@@ -87,10 +87,29 @@ app.get('/records', async (req, res) => {
       //console.log(docs);
     }    
   });
+
+  gfs.files.find().toArray((err, files) => {
+    if(!files || files.length === 0) {
+      res.render('records', {files: false});
+    } else {
+      
+      files.map(file => {
+        if(file.contentType == 'image/jpeg' || file.contentType == 'image/jpg' || file.contentType == 'image/png') {
+          file.isImage = true;
+        } else {
+          file.isImage = false;
+        }
+      });
+
+      res.render('records', {
+        files: files,
+        mass: mass
+      });      
+      
+    }    
+  });
   
-  res.render('records', {    
-    mass: mass
-  });  
+  
 });
 
 

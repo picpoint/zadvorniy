@@ -7,6 +7,12 @@
 </head>
 <body>
 	
+  {{#if files.length}}
+    {{#each files}}
+      <img src="image/{{filename}}" alt="">
+    {{/each}}
+  {{/if}}
+
 	<section class="rec">
     <div class="rec__wrap">
     
@@ -17,6 +23,13 @@
         {{#if mass.length}}
           {{#each mass}}
             <div class="rec__eachmult">              
+
+              {{#if files.length}}
+                {{#each files}}
+                  <img src="image/{{filename}}" alt="">
+                {{/each}}
+              {{/if}}
+
               <span>{{title}}</span>
               <span><sub>Премьера</sub></span>
               <span>{{yearsOfIssue}}</span>
@@ -30,9 +43,16 @@
           {{/each}}
         {{/if}}
       </div>
-
+      
+      {{#if files.length}}
+        {{#each files}}
+          <img src="image/{{filename}}" alt="">
+        {{/each}}
+      {{/if}}
+      
     </div>
 	</section>  
+  
 
 </body>
 </html>
