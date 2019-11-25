@@ -7,29 +7,26 @@
 </head>
 <body>
 	
-  {{#if files.length}}
-    {{#each files}}
-      <img src="image/{{filename}}" alt="">
-    {{/each}}
-  {{/if}}
-
+  
 	<section class="rec">
     <div class="rec__wrap">
     
       <h2>Records page</h2>
       <a href="/">Home page</a>
       
-      <div class="rec__multblock">
-        {{#if mass.length}}
-          {{#each mass}}
-            <div class="rec__eachmult">              
+      <div class="rec__multblock">        
+        <div class="rec__eachmult">                            
 
-              {{#if files.length}}
-                {{#each files}}
-                  <img src="image/{{filename}}" alt="">
-                {{/each}}
-              {{/if}}
+          <div class="rec__pictmult">
+            {{#if files.length}}
+              {{#each files}}
+                <img src="image/{{filename}}" alt="">
+              {{/each}}
+            {{/if}}
+          </div>
 
+          {{#if mass.length}}
+            {{#each mass}}   
               <span>{{title}}</span>
               <span><sub>Премьера</sub></span>
               <span>{{yearsOfIssue}}</span>
@@ -40,15 +37,10 @@
                 <a href="{{source}}" target="_blank">Посмотреть мультфильм</a>
               </div>  
             </div>
-          {{/each}}
-        {{/if}}
-      </div>
-      
-      {{#if files.length}}
-        {{#each files}}
-          <img src="image/{{filename}}" alt="">
-        {{/each}}
-      {{/if}}
+            {{/each}}
+          {{/if}}
+
+      </div>       
       
     </div>
 	</section>  

@@ -3,8 +3,7 @@
 
 //.reset();
 
-body {  
-  //background-color: lightcyan;	
+body {    
   background-image: url('/pict/bkg.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,8 +44,7 @@ body {
       padding: 10px;      
     }
     span:nth-child(1) {
-      font-weight: bold;
-      //text-decoration: underline;
+      font-weight: bold;      
       font-size: 1.1rem;
       color: #094d74;
     }
@@ -63,6 +61,15 @@ body {
       color: gray;
     }
   }
+  &__pictmult {
+    border: @border;
+    display: flex;    
+    justify-content: center;
+    img {
+      width: 150px;      
+    }
+  }
+
   &__link {    
     //border: @border;
     display: flex;    

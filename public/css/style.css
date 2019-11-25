@@ -56,6 +56,14 @@ body {
   font-weight: bold;
   color: gray;
 }
+.rec__pictmult {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+}
+.rec__pictmult img {
+  width: 150px;
+}
 .rec__link {
   display: flex;
   justify-content: center;
