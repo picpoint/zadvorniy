@@ -33,19 +33,26 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended: true}));
 
 
+let gfs;
 
+const conn = mongoose.createConnection(urlMongoDB);
 
 mongoose.connect(urlMongoDB, {useNewUrlParser: true}, (err) => {
 	if(err) {
 		throw new Error('***ERR TO CONNECT DB***');
 	}	else {
 		console.log('connect successfully');		
-	}
-
+  }
+   
 	app.listen(port, () => {
 		console.log(`---server start on port ${port}---`);
 	});
+});
 
+
+conn.once('open', () => {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('gridfscollections');
 });
 
 
@@ -67,6 +74,8 @@ const storage = new GridFsStorage({
     });
   }
 });
+
+const uploads = multer({storage});
 
 
 
@@ -90,7 +99,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/', (req, res) => {  
+app.post('/', uploads.single('file'), (req, res) => {  
   const newzadvorniyobj = new Zadvorniy({
 		title: req.body.titlemultfilm,
 		yearsOfIssue: req.body.dateofissue,
